@@ -1,0 +1,125 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvfkvpbwyesh6"]
+
+[ext_resource type="Script" uid="uid://cq4gmal0dwdmx" path="res://scripts/game_manager.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://v0uciwrc0w2s" path="res://scenes/menus.tscn" id="2_0wfyh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ig7tw"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5qli"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TapButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+offset_left = 131.0
+offset_top = 193.0
+offset_right = 302.0
+offset_bottom = 339.0
+
+[node name="TouchButton" type="TouchScreenButton" parent="UI"]
+unique_name_in_owner = true
+
+[node name="TapCountLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 432.0
+offset_right = 648.0
+offset_bottom = 70.0
+label_settings = SubResource("LabelSettings_ig7tw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AvailableTaps" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 432.0
+offset_top = 70.0
+offset_right = 648.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_o5qli")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalTapLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_right = 216.0
+offset_bottom = 70.0
+label_settings = SubResource("LabelSettings_0xm2m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TreeStageLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 216.0
+offset_right = 432.0
+offset_bottom = 70.0
+label_settings = SubResource("LabelSettings_h2yge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalTreeLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_top = 70.0
+offset_right = 216.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+offset_left = 216.0
+offset_top = 70.0
+offset_right = 432.0
+offset_bottom = 140.0
+
+[node name="TreeVisual" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 387.0
+offset_top = 189.0
+offset_right = 451.0
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="PassiveTapTimer" type="Timer" parent="Managers"]
+autostart = true
+
+[node name="Menus" parent="." instance=ExtResource("2_0wfyh")]
+visible = false
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_right = 648.0
+offset_bottom = 1152.0
+grow_vertical = 1
+
+[connection signal="pressed" from="UI/TapButton" to="." method="_on_tap_button_pressed"]
+[connection signal="pressed" from="UI/TouchButton" to="." method="_on_touch_button_pressed"]
+[connection signal="timeout" from="Managers/PassiveTapTimer" to="." method="_on_passive_tap_timer_timeout"]
