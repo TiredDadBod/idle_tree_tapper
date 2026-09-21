@@ -2,6 +2,7 @@ extends Control
 
 var gameManager = null
 
+# Holds all node references
 @onready var total_tap_amount: Label = %TotalTapAmount
 @onready var available_tap_amount: Label = %AvailableTapAmount
 @onready var current_tap_amount: Label = %CurrentTapAmount
