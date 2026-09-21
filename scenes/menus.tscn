@@ -1,7 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://v0uciwrc0w2s"]
+[gd_scene load_steps=6 format=3 uid="uid://v0uciwrc0w2s"]
 
 [ext_resource type="Script" uid="uid://dm0mmpebnjnjx" path="res://scripts/menu_manager.gd" id="1_dve7u"]
 [ext_resource type="LabelSettings" uid="uid://ckbtmx11mdpi3" path="res://scenes/menuLabels.tres" id="2_ou0nh"]
+[ext_resource type="StyleBox" uid="uid://cpf7bnw4cic8g" path="res://scenes/menustyle.tres" id="2_ugpjx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbhjr"]
+content_margin_left = 25.0
+content_margin_right = 25.0
+bg_color = Color(0.12156863, 0.28235295, 0.20784314, 0.7921569)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_offset = Vector2(0, -10)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ou0nh"]
 size = Vector2(80, 20)
@@ -18,6 +30,7 @@ size_flags_vertical = 4
 script = ExtResource("1_dve7u")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -27,8 +40,11 @@ offset_top = 150.0
 offset_right = 319.0
 offset_bottom = 852.0
 grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/tab_separation = 20
 theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = ExtResource("2_ugpjx")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_dbhjr")
 tab_alignment = 1
 current_tab = 3
 clip_tabs = false
@@ -36,10 +52,16 @@ clip_tabs = false
 [node name="Settings" type="VBoxContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+alignment = 1
 metadata/_tab_index = 0
+
+[node name="ReturnToGame" type="Button" parent="TabContainer/Settings"]
+layout_mode = 2
+text = "Return to Game"
 
 [node name="Stats" type="HBoxContainer" parent="TabContainer"]
 visible = false
+modulate = Color(0.4998688, 0.72145844, 0.6925735, 1)
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -121,90 +143,92 @@ layout_mode = 2
 text = "Test 6"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="PassiveStats" type="HBoxContainer" parent="TabContainer"]
+[node name="Passive Stats" type="HBoxContainer" parent="TabContainer"]
 visible = false
+modulate = Color(0.4998688, 0.72145844, 0.6925735, 1)
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Labels" type="VBoxContainer" parent="TabContainer/PassiveStats"]
+[node name="Labels" type="VBoxContainer" parent="TabContainer/Passive Stats"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 
-[node name="TotalTaps" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="TotalTaps" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Total Passive Taps"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Squirrels" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="Squirrels" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Squirrels (1 tap/s)"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Racoons" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="Racoons" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Racoons (5 taps/s)"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Foxes" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="Foxes" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Foxes (10 taps/s)"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Deer" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="Deer" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Deer (50 taps/s)"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Bears" type="Label" parent="TabContainer/PassiveStats/Labels"]
+[node name="Bears" type="Label" parent="TabContainer/Passive Stats/Labels"]
 layout_mode = 2
 text = "Bears (100 taps/s)"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="Amounts" type="VBoxContainer" parent="TabContainer/PassiveStats"]
+[node name="Amounts" type="VBoxContainer" parent="TabContainer/Passive Stats"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 
-[node name="TotalPTapAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="TotalPTapAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 1"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="SquirrelAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="SquirrelAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 2"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="RacoonAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="RacoonAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 3"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="FoxAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="FoxAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 4"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="DeerAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="DeerAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 5"
 label_settings = ExtResource("2_ou0nh")
 
-[node name="BearAmount" type="Label" parent="TabContainer/PassiveStats/Amounts"]
+[node name="BearAmount" type="Label" parent="TabContainer/Passive Stats/Amounts"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test 6"
 label_settings = ExtResource("2_ou0nh")
 
 [node name="Store" type="HBoxContainer" parent="TabContainer"]
+modulate = Color(0.4998688, 0.72145844, 0.6925735, 1)
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -329,6 +353,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Test 6"
 
+[connection signal="pressed" from="TabContainer/Settings/ReturnToGame" to="." method="_on_return_to_game_pressed"]
 [connection signal="pressed" from="TabContainer/Store/BuyButtons/BuySquirrel" to="." method="_on_buy_squirrel_pressed"]
 [connection signal="pressed" from="TabContainer/Store/BuyButtons/BuyRacoon" to="." method="_on_buy_racoon_pressed"]
 [connection signal="pressed" from="TabContainer/Store/BuyButtons/BuyFox" to="." method="_on_buy_fox_pressed"]

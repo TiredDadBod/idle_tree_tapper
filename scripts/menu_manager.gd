@@ -21,6 +21,8 @@ var gameManager = null
 @onready var buy_fox: Button = %BuyFox
 @onready var buy_deer: Button = %BuyDeer
 @onready var buy_bear: Button = %BuyBear
+@onready var tab_container: TabContainer = %TabContainer
+@onready var menus: Control = $"."
 
 func setup_ui(managerRef) -> void:
 	gameManager = managerRef
@@ -69,3 +71,6 @@ func _on_buy_deer_pressed() -> void:
 func _on_buy_bear_pressed() -> void:
 	if gameManager != null and gameManager.buyAnimal("bear"):
 		refreshUI()
+
+func _on_return_to_game_pressed() -> void:
+	menus.set_visible(false)

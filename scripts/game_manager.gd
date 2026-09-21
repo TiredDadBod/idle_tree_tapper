@@ -179,3 +179,9 @@ func buyAnimal(animal: String) -> bool:
 		return true # Purchase successful
 		
 	return false # Not enough taps, may need a message for player
+
+func _on_menu_pressed() -> void:
+	if menus.is_visible_in_tree():
+		pass
+	else:
+		menus.set_visible(true)
